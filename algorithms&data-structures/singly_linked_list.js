@@ -107,6 +107,21 @@ class SinglyLinkedList {
     this.length--;
     return removed;
   }
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let next;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -124,5 +139,6 @@ list.push("welcome!");
 // list.set(2, "coder");
 // console.log(list.get(2));
 // list.insert(1, "there");
-list.remove(0);
-console.log(list);
+// list.remove(0);
+console.log(list.reverse());
+// console.log(list);
