@@ -50,16 +50,30 @@ class SinglyLinkedList {
     }
     return currentHead;
   }
+  unshift(val) {
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
 list.push("hi");
 list.push("user");
 list.push("admin");
+list.push("welcome!");
 // list.pop();
 // list.pop();
 // list.pop();
-list.shift();
-list.shift()
-list.shift()
+// list.shift();
+// list.shift();
+// list.shift();
+list.unshift("First");
 console.log(list);
