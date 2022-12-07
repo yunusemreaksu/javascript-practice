@@ -53,6 +53,19 @@ class DoublyLinkedList {
     this.length--;
     return oldHead;
   }
+  unshift(val) {
+    let newNode = new Node(val);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 let list = new DoublyLinkedList();
@@ -60,6 +73,7 @@ list.push(10);
 list.push(12);
 list.push(14);
 // list.pop();
-list.shift();
+// list.shift();
+list.unshift(8);
 
 console.log(list);
