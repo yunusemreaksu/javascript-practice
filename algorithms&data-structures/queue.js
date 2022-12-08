@@ -22,11 +22,23 @@ class Queue {
     }
     return ++this.size;
   }
+  dequeue() {
+    if (!this.first) return null;
+    let temp = this.first;
+    if (this.first === this.last) {
+      this.last = null;
+    }
+    this.first = this.first.next;
+    this.size--;
+    return temp.value;
+  }
 }
 
 let queue = new Queue();
 queue.enqueue(10);
 queue.enqueue(12);
 queue.enqueue(14);
+
+console.log(queue.dequeue())
 
 console.log(queue);
