@@ -24,3 +24,10 @@ class Stack {
     return ++this.size;
   }
 }
+
+let stack = new Stack();
+stack.push(10);
+stack.push(12);
+stack.push(14);
+
+console.log(stack);
