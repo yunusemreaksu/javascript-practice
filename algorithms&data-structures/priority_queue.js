@@ -20,20 +20,20 @@ class PriorityQueue {
     while (idx > 0) {
       let parentIdx = Math.floor((idx - 1) / 2);
       let parent = this.values[parentIdx];
-      if (element.priority <= parent.priority) break;
+      if (element.priority >= parent.priority) break;
       this.values[parentIdx] = element;
       this.values[idx] = parent;
       idx = parentIdx;
     }
   }
   dequeue() {
-    const max = this.values[0];
+    const min = this.values[0];
     const end = this.values.pop();
     if (this.values.length > 0) {
       this.values[0] = end;
       this.sinkDown();
     }
-    return max;
+    return min;
   }
   sinkDown() {
     let idx = 0;
@@ -48,15 +48,15 @@ class PriorityQueue {
 
       if (leftChildIdx < length) {
         leftChild = this.values[leftChildIdx];
-        if (leftChild.priority > element.priority) {
+        if (leftChild.priority < element.priority) {
           swap = leftChildIdx;
         }
       }
       if (rightChildIdx < length) {
         rightChild = this.values[rightChildIdx];
         if (
-          (swap === null && rightChild.priority > element.priority) ||
-          (swap !== null && rightChild.priority > leftChild.priority)
+          (swap === null && rightChild.priority < element.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
         ) {
           swap = rightChildIdx;
         }
@@ -71,3 +71,12 @@ class PriorityQueue {
 }
 
 let queue = new PriorityQueue();
+queue.enqueue("common cold", 5);
+queue.enqueue("gunshot wound", 1);
+queue.enqueue("high fever", 4);
+queue.enqueue("broken arm", 2);
+queue.enqueue("glass in foot", 3);
+
+console.log(queue);
+console.log(queue.dequeue());
+console.log(queue.dequeue());
