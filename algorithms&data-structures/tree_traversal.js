@@ -113,6 +113,22 @@ class BinarySearchTree {
     traverse(this.root);
     return data;
   }
+  depthFirstSearchInOrder() {
+    let data = [];
+    function traverse(node) {
+      // node.left && traverse(node.left); // Or:
+      if (node.left) {
+        traverse(node.left);
+      }
+      data.push(node.value);
+      // node.right && traverse(node.right); // Or:
+      if (node.right) {
+        traverse(node.right);
+      }
+    }
+    traverse(this.root);
+    return data;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -125,4 +141,5 @@ tree.insert(20);
 
 // console.log(tree.breadthFirstSearch());
 // console.log(tree.depthFirstSearchPreOrder());
-console.log(tree.depthFirstSearchPostOrder());
+// console.log(tree.depthFirstSearchPostOrder());
+console.log(tree.depthFirstSearchInOrder());
